@@ -20,7 +20,7 @@ st.markdown("""
 <style>
 /* Main application background */
 .stApp {
-    background: linear-gradient(135deg, #EAF4FF 0%, #F5FAFF 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #EAF4FF 60%, #BBDEFB 100%);
     color: #183153;
 }
 
@@ -34,6 +34,17 @@ st.markdown("""
 
 h1 {
     color: #87CEEB !important;
+}
+
+/* Warning message text color */
+div[data-testid="stAlert"] p {
+    color: #000000 !important;
+}
+
+/* Optional: make warning text bold */
+div[data-testid="stAlert"] p {
+    color: #000000 !important;
+    font-weight: 600 !important;
 }
 
 /* Black borders for input fields */
@@ -80,6 +91,9 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
     border-color: #C5DDF5 !important;
     border-radius: 16px !important;
 }
+
+
+
 
 /* Input fields */
 .stNumberInput input,
@@ -158,6 +172,66 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
         padding-right: 1rem;
     }
 }
+
+
+
+/* ==========================================
+   BLACK BORDER AROUND THE COMPLETE CONTENT
+   ========================================== */
+
+/* Outer border around the entire application content */
+div[data-testid="stAppViewBlockContainer"] {
+    border: 2px solid #000000 !important;
+    border-radius: 14px !important;
+    padding: 2rem !important;
+    box-sizing: border-box !important;
+}
+
+/* Header, body, and footer containers */
+.st-key-site_header,
+.st-key-site_body,
+.st-key-site_footer,
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    border: 2px solid #000000 !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+}
+
+# /* Nested cards and bordered sections */
+# div[data-testid="stVerticalBlockBorderWrapper"] > div {
+#     border-color: #000000 !important;
+# }
+
+/* Expanders */
+div[data-testid="stExpander"] {
+    border: 2px solid #000000 !important;
+    border-radius: 10px !important;
+}
+
+/* Tables */
+div[data-testid="stDataFrame"],
+div[data-testid="stTable"] {
+    border: 2px solid #000000 !important;
+    border-radius: 8px !important;
+}
+
+/* Input fields */
+.stNumberInput input,
+.stTextInput input,
+.stDateInput input,
+.stTimeInput input,
+.stTextArea textarea,
+div[data-baseweb="select"] > div {
+    border: 1.5px solid #000000 !important;
+}
+
+/* All horizontal dividers */
+hr {
+    border: none !important;
+    height: 2px !important;
+    background-color: #000000 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -169,7 +243,7 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 # ============================================================
 # PROFESSIONAL BLUE THEME
 # ============================================================
-BACKGROUND = "#EAF4FF"     # Light blue background
+BACKGROUND = "#054F9E"     # Light blue background
 CARD = "#FFFFFF"           # White cards
 INPUT_BG = "#F0F7FF"       # Pale blue input fields
 TEXT = "#183153"           # Dark navy text
@@ -183,6 +257,7 @@ SUCCESS_BG = "#E1F5FE"     # Light blue success background
 # HEADER
 # ============================================================
 with st.container(key="site_header", border=True):
+    st.divider()
     st.caption("SMART LOAN COMPARISON")
     st.title("🏦 Bank Compare")
     st.divider()
@@ -233,6 +308,7 @@ with st.container(key="site_body", border=True):
     # ========================================================
     # LOAN DETAILS
     # ========================================================
+    st.divider()
     st.write("")
     st.header("1. Loan Details")
     principal_col, tenure_col = st.columns(2, gap="large")
